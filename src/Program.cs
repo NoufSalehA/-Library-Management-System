@@ -1,22 +1,56 @@
-﻿class Book
+﻿public class LibraryItems
+{//only name is required
+    public Guid Id
+    {
+        get;
+        set;
+    }
+    public string Names
+    {
+        get;
+        set;
+    }
+    public DateTime TheCreateDate
+    {
+        get;
+        set;
+    }
+    public LibraryItems(string names, DateTime thecreatedate = default)//constructor
+    {
+        this.Names = names;
+        this.TheCreateDate = thecreatedate = default ? DateTime.Now : thecreatedate;
+    }
+
+}
+public class Book:LibraryItems//inheritance
 {
-    public string id;
-    public string title;
-    public DateTime createdDate;
+
+public Book(string title,DateTime theDate):base(title,theDate){//inherit /access the parent constructor using ':base'
+
+}
+
 
 
 }
-class User
+public class User:LibraryItems
 {
-    private string id;
-    public string name;
-    public DateTime createdDate;
+    public User(string name,DateTime theDate):base(name,theDate){
+
+    }
+
 }
-class Library { }
+public class Library{//all the work
+
+
+
+
+}
+
 
 internal class Program
 {
     private static void Main()
     {
+
     }
 }
