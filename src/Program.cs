@@ -23,7 +23,7 @@ public class LibraryItems
         this.Names = names;
         this.TheCreateDate = thecreatedate ?? DateTime.Now;//if it is null then it will use the date of today- without this. is also correct
     }
-    }
+}
 public class Book : LibraryItems//inheritance
 {
 
@@ -144,7 +144,7 @@ internal class Program
 
         }
         library.DeleteBook(book4.Id);
-        Console.WriteLine($"-------------------------------------------------");
+        Console.WriteLine($"-------------------------------------------------------");
         Console.WriteLine($"after deleting book 4:The Catcher in the Rye \n");
         books = library.GetAllBooks(1, 4);
 
@@ -153,7 +153,7 @@ internal class Program
             Console.WriteLine($"{b.Names} ,{b.TheCreateDate}.{b.Id}");
 
         }
-        Console.WriteLine($"------------------------------------------------------");
+        Console.WriteLine($"-------------------------------------------------------");
         var users = library.GetAllUsers(1, 4);
         Console.WriteLine($"Orginal Users list");
         foreach (var u in users)
@@ -162,7 +162,7 @@ internal class Program
         }
         library.DeleteUser(user2.Id);
         users = library.GetAllUsers(1, 4);
-        Console.WriteLine($"---------------------------");
+        Console.WriteLine($"-------------------------------------------------------");
 
         Console.WriteLine($"After deleting user2:Bob");
 
@@ -173,6 +173,33 @@ internal class Program
 
 
         }
+        Console.WriteLine($"-------------------------------------------------------");
+        Console.WriteLine($"Find A book include the word *Marnie*");
+        var book = library.FindBookByItsTitle("Marnie");
+        foreach (var title in book)
+        {
+            Console.WriteLine($"====== {title.Names} ==========");
+
+        }
+        Console.WriteLine($"-------------------------------------------------------");
+        Console.WriteLine($"Find A user with *Ali* in her name");
+        var user = library.FindUserByName("Alice");
+        foreach (var name in user)
+        {
+            Console.WriteLine($"===== {name.Names} ====");
+
+        }
+        Console.WriteLine($"-------------------------------------------------------");
+        Console.WriteLine($"*******Sorted by created date Books List********");
+
+
+
+
+
+
+
+
 
     }
 }
+//
