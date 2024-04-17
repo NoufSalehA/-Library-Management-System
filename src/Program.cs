@@ -42,7 +42,7 @@ public class User : LibraryItems
 public class Library
 {//all the work
     public List<Book> books;
-    private List<User> _users;
+    public List<User> _users;
     public Library()//constructor -create objs for users,books
     {
         books = new List<Book>();
@@ -64,12 +64,10 @@ public class Library
         {
             Console.WriteLine($"--!--Incorrect ID--!--");
         }
-
     }
     public List<Book> FindBookByItsTitle(string title)
     {
         return books.FindAll(book => book.Names.Contains(title));
-
     }
     public List<Book> GetAllBooks(int page, int pageSize)
     {
@@ -91,21 +89,17 @@ public class Library
         else
         {
             Console.WriteLine($"--!--Incorrect ID--!--");
-
         }
     }
     public List<User> FindUserByName(string name)
     {
         return _users.FindAll(user => user.Names.Contains(name));
-
     }
     public List<User> GetAllUsers(int page, int pageSize)
     {
         //pagination: number of page-limit(page size)
-
         return _users.Skip((page - 1) * pageSize).Take(pageSize).ToList();
     }
-
 }
 internal class Program
 {
@@ -118,40 +112,32 @@ internal class Program
         var book4 = new Book("The Catcher in the Rye", new DateTime(2023, 4, 1));
         var book5 = new Book("Pride and Prejudice", new DateTime(2023, 5, 1));
         var book6 = new Book("Wuthering Heights", new DateTime(2023, 6, 1));
-
         var user1 = new User("Alice", new DateTime(2023, 1, 1));
         var user2 = new User("Bob", new DateTime(2023, 2, 1));
         var user3 = new User("Charlie", new DateTime(2023, 3, 1));
         var user4 = new User("David");
-
-
         Library library = new Library();//book -user
         library.AddBook(book1);
         library.AddBook(book2);
         library.AddBook(book3);
         library.AddBook(book4);
-
         library.AddUser(user1);
         library.AddUser(user2);
         library.AddUser(user3);
         library.AddUser(user4);
         var books = library.GetAllBooks(1, 4);
         Console.WriteLine($"Orginal Books list");
-
         foreach (var b in books)
         {
             Console.WriteLine($"{b.Names} ,{b.TheCreateDate}.{b.Id}");
-
         }
         library.DeleteBook(book4.Id);
         Console.WriteLine($"-------------------------------------------------------");
         Console.WriteLine($"after deleting book 4:The Catcher in the Rye \n");
         books = library.GetAllBooks(1, 4);
-
         foreach (var b in books)
         {
             Console.WriteLine($"{b.Names} ,{b.TheCreateDate}.{b.Id}");
-
         }
         Console.WriteLine($"-------------------------------------------------------");
         var users = library.GetAllUsers(1, 4);
@@ -163,15 +149,10 @@ internal class Program
         library.DeleteUser(user2.Id);
         users = library.GetAllUsers(1, 4);
         Console.WriteLine($"-------------------------------------------------------");
-
         Console.WriteLine($"After deleting user2:Bob");
-
-
         foreach (var u in users)
         {
             Console.WriteLine($"{u.Names} ,{u.TheCreateDate}.{u.Id}");
-
-
         }
         Console.WriteLine($"-------------------------------------------------------");
         Console.WriteLine($"Find A book include the word *Marnie*");
@@ -179,7 +160,6 @@ internal class Program
         foreach (var title in book)
         {
             Console.WriteLine($"====== {title.Names} ==========");
-
         }
         Console.WriteLine($"-------------------------------------------------------");
         Console.WriteLine($"Find A user with *Ali* in her name");
@@ -187,19 +167,21 @@ internal class Program
         foreach (var name in user)
         {
             Console.WriteLine($"===== {name.Names} ====");
-
         }
         Console.WriteLine($"-------------------------------------------------------");
         Console.WriteLine($"*******Sorted by created date Books List********");
+        var sortedBooks = library.books.OrderBy(book => book.TheCreateDate).ToList();
+        foreach (var sorted in sortedBooks)
+        {
+            Console.WriteLine($"{sorted.Names},{sorted.TheCreateDate} ,{sorted.Id}");
+        }
+        Console.WriteLine($"-------------------------------------------------------");
+        Console.WriteLine($"*******Sorted by created date Users List********");
+        var sortedUsers = library._users.OrderBy(user => user.TheCreateDate).ToList();
+        foreach (var sort in sortedUsers)
+        {
+            Console.WriteLine($"{sort.Names}, {sort.TheCreateDate} , {sort.Id}");
 
-
-
-
-
-
-
-
-
+        }
     }
 }
-//
