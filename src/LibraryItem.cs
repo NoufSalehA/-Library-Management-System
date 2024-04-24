@@ -1,20 +1,9 @@
 public class LibraryItems
 {//only name is required
-    public Guid Id
-    {
-        get;
-        set;
+    public Guid Id{get;set;}
+    public string Name{get;set;
     }
-    public string Name
-    {
-        get;
-        set;
-    }
-    public DateTime CreatedDate
-    {
-        get;
-        set;
-    }
+    public DateTime CreatedDate {get;set;}
     public LibraryItems(string names, DateTime? thecreatedate = null)//constructor//trying null instead of default
     {
         Id = Guid.NewGuid();
